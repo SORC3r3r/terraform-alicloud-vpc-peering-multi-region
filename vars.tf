@@ -40,7 +40,7 @@ variable "existing_cen_id" {
   default     = ""
 }
 
-variable "cen_name" {
+variable "cen_instance_name" {
   description = "The name of the CEN instance. Defaults to null. The name must be 2 to 128 characters in length and can contain letters, numbers, periods (.), underscores (_), and hyphens (-). The name must start with a letter, but cannot start with http:// or https://."
   type        = string
   default     = ""
@@ -71,7 +71,7 @@ variable "create_bandwidth_package" {
   default     = true
 }
 
-variable "bandwidth_package_name" {
+variable "cen_bandwidth_package_name" {
   description = "The name of the bandwidth package. Defaults to null."
   type        = string
   default     = null
@@ -83,10 +83,16 @@ variable "bandwidth" {
   default     = 10
 }
 
-variable "geographic_region_ids" {
-  description = "List of the two areas to connect. Valid value: China | North-America | Asia-Pacific | Europe | Middle-East."
-  type        = set(string)
-  default     = []
+variable "geographic_region_a_id" {
+  description = "One of the two areas to connect. Valid value: China | North-America | Asia-Pacific | Europe | Middle-East."
+  type        = string
+  default     = ""
+}
+
+variable "geographic_region_b_id" {
+  description = "One of the two areas to connect. Valid value: China | North-America | Asia-Pacific | Europe | Middle-East."
+  type        = string
+  default     = ""
 }
 
 variable "banwidth_description" {
@@ -95,7 +101,7 @@ variable "banwidth_description" {
   default     = "null"
 }
 
-variable "charge_type" {
+variable "payment_type" {
   description = "The billing method. Valid value: PostPaid | PrePaid. Default to PostPaid. If set to PrePaid, the bandwidth package can't be deleted before expired time."
   type        = string
   default     = "PostPaid"
@@ -132,12 +138,6 @@ variable "child_instance_region_id_2" {
   default     = ""
 }
 
-variable "child_instance_type" {
-  description = "The type of the child instance to attach."
-  type        = string
-  default     = "VPC"
-}
-
 #bandwidth limit
 variable "create_bandwidth_limit" {
   description = "Wether to create bandwidth limit,Default to true."
@@ -150,3 +150,4 @@ variable "bandwidth_limit" {
   type        = number
   default     = 4
 }
+
